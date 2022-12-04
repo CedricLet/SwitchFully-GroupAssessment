@@ -1,0 +1,139 @@
+What the program will do? 
+For a selection of email, the program will sort it. 
+	- The program going to search a string like "CV", "Promo",…
+	- When it's found, the program transfer the mail in the right service. 
+	- Then delete the mail from the server mail info@parkshark.com.
+	- Increment the compters. 
+	- Then do the same on the other mail select.
+	- Display a message with the number of mails selected and for each service. 
+	- At the end of the day print the message and put the compters to 0. 
+End of the program.
+
+//User select mails to be sorted
+//click on button "sort"
+
+
+START
+
+	VARAIBLES
+
+		/*
+		* Open the mail and copy it in a variable? 
+		* Use other method from an API to open the mail receive? 
+		*/
+
+		mailContent : string; // the body of the mail, change after the mail is deleted
+		nbrOfMail : int; // the number of mail select
+		generalCompt : int <- 0; // Compter to increment when a mail as been transfer
+		recruitmentCompt : int <- 0; // Compter for the recruitment service
+		spamCompt : int <- 0; // Compter for the spam service
+		salesCompt : int <- 0; // Compter for the sales service
+		receptionCompt : int <- 0; // Compter for the reception service
+
+	FOR i equals 0 TO nbrOfMail i increment by 1
+
+		CASE mailContent:
+
+				// regex the string to find ? compare the string ?
+				// return true or false
+				// if true send the mail to the right service
+				// if false go to the next case
+			 	// delete the mail transferred, using an API ?
+			 	// increment the compter
+
+			 Search string in mailContent equals "CV" :
+
+			 		Transfer the mail to "recruitment@parkshark.com";
+			 		IF the mail is sent 
+
+						Delete the mail;
+						mailContent <- '';
+						generalCompt + 1; 
+						recruitmentCompt + 1;
+
+					ELSE
+						PRINT message error;
+					ENDIF
+
+			Search string in mailContent equals "Promo" OR "advertising":
+
+					Transfer the mail to "spam@parkshark.com";
+					IF the mail is sent 
+
+						Delete the mail;
+						mailContent <- '';
+						generalCompt + 1; 
+						spamCompt + 1;
+
+					ELSE
+						PRINT message error; // break the loop
+					ENDIF
+
+			Search string in mailContent equals "proposal":
+
+					Transfer the mail to "sales@parkshark.com";
+					IF the mail is sent 
+
+						Delete the mail;
+						mailContent <- '';
+						generalCompt + 1; 
+						salesCompt + 1;
+
+					ELSE
+						PRINT message error;
+					ENDIF
+
+			DEFAULT when nothing is found
+
+					Transfer the mail to "reception@parkshark.com";
+					IF the mail is sent 
+
+						Delete the mail;
+						mailContent <- '';
+						generalCompt + 1; 
+						receptionCompt + 1;
+
+					ELSE
+						PRINT message error;
+					ENDIF
+
+		ENDCASE
+
+	ENDFOR
+
+	PRINT "We have sorted generalCompt mails:";
+	PRINT LIST 
+		"recruitementCompt to recruitment"
+		"spamCompt to spam"
+		"salesCompt to sales"
+		"receptionCompt to reception"
+	ENDLIST;
+
+	/* for each day when it's the end of the working day print the message 
+	and set the compters to 0 */
+
+	IF the time is the end of the working day // Example: 18p.m
+
+		print the message;
+		generalCompt <- 0;
+		recruitmentCompt <- 0;
+		spamCompt <- 0;
+		salesCompt <- 0;
+		receptionCompt <- 0;
+		mailContent <- '';
+		nbrOfMail <- 0;
+
+	ENDIF
+
+END
+
+The assumptions:
+	- Add an API to process emails
+	- Connect the program to the server mail 
+	- Use try catch for the connection
+	- Make the program run every day of the work week (Monday to Friday)
+	- Use crontab for linux or with java using java.time
+	- Don't forget to set the good time zone
+	- At the end of the working day launch the printer for the message
+	- Possibly leave the choose to print the message at any time of the working day but don't set the compters to 0
+
