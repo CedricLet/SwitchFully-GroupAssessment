@@ -26,6 +26,7 @@ After sorting the entire list of emails, the following information should be pri
                 # to sales
                 # to reception
 At the end of the day it should be possible to print the same piece of text as above but for the entire day.
+
 1.2. DELIVERABLE
 Send in your solution by e-mail to kobe@switchfully.com before the deadline.
 Make sure you have your solution easily available and ready to share during the group interview.
