@@ -136,4 +136,9 @@ The assumptions:
 	- Don't forget to set the good time zone
 	- At the end of the working day launch the printer for the message
 	- Possibly leave the choose to print the message at any time of the working day but don't set the compters to 0
-
+	
+	
+Some correction after sending…
+- Compter -> counter
+- No need of comments when the variabels are explicit
+- Line 33 : make a foreach loop if the content of emails are all in a array
