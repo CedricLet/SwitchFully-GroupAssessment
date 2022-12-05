@@ -7,7 +7,7 @@ $spamCompt = 0;
 $salesCompt = 0;
 $receptionCompt = 0;
 
-foreach ($mailsBody as $contents => $value){
+foreach ($mailsBody as $value){
     switch ($value) {
         case (preg_match('/promo/i', $value) == 1 || preg_match('/advertising/i', $value) == 1):
             echo 'ok pour spam<br>';
